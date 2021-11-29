@@ -1,22 +1,29 @@
 <template>
     <main>
-        <div class="movies">
-            <ul v-for="(movie, i) in moviesList" :key="`movie-${i}`">
-                <li>Titolo: {{ movie.title }}</li>
-                <li>Titolo originale: {{ movie.original_title }}</li>
-                <li>Lingua: {{ movie.original_language }}</li>
-                <li>Voto: {{ movie.vote_average }}</li>
-            </ul>
+        <div class="movie" 
+        v-for="(movie, i) in moviesList" :key="`movie-${i}`"
+        >
+            <Card 
+            :title="movie.title"
+            :orTitle="movie.original_title"
+            :language="movie.original_language"
+            :vote="movie.vote_average"
+            />
         </div>
     </main>
 </template>
 
 <script>
+import Card from '@/components/Card.vue'
+
 export default {
     name: "Main",
     props: {
         moviesList: Array,
     },
+    components: {
+        Card,
+    }
 };
 </script>
 
