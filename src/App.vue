@@ -31,7 +31,7 @@ export default {
   methods: {
     getMovies() {
       axios
-        .get(`https://api.themoviedb.org/3/search/movie/?api_key=97334a30f0eef5e4d8fc3009e75f736b&query=${this.query}`)
+        .get(`https://api.themoviedb.org/3/search/movie/?api_key=97334a30f0eef5e4d8fc3009e75f736b&query=${this.query}&language=it-IT`)
         .then((result) => {
           this.movies = result.data.results;
         })
