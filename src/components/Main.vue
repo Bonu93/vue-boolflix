@@ -1,11 +1,15 @@
 <template>
     <main>
-        <Card v-for="(movie, i) in moviesList" :key="`movie-${i}`"
-        :title="movie.title"
-        :orTitle="movie.original_title"
-        :language="movie.original_language"
-        :vote="movie.vote_average"
-        />
+        <div class="gallery">
+            <Card 
+            v-for="(movie, i) in moviesList" :key="`movie-${i}`"
+            :title="movie.title"
+            :orTitle="movie.original_title"
+            :language="movie.original_language"
+            :vote="movie.vote_average"
+            />
+        </div>
+
         
     </main>
 </template>
@@ -20,7 +24,7 @@ export default {
     },
     components: {
         Card,
-    }
+    }, 
 };
 </script>
 

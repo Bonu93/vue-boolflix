@@ -1,7 +1,7 @@
 <template>
     <ul>
         <li>Titolo: {{ title }}</li>
-        <li>Titolo originale: {{ orTitle }}</li>
+        <li v-show="titleOk">Titolo originale: {{ orTitle }}</li>
         <li class="lang-img" v-if="flagOk">
             <img :src="require(`@/assets/${language}.png`)" alt="">
         </li>
@@ -32,7 +32,12 @@ export default {
     computed: {
         flagOk() {
         return   this.flags.includes(this.language) ? 
-             true : false
+                true : false;
+        },
+
+        titleOk() {
+            return this.title !== this.orTitle ?
+                true : false;
         }
     },
 }
