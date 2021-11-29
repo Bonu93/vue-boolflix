@@ -1,28 +1,54 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header @search="getQuery" />
+    <Main />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from '@/components/Header.vue'
+import Main from '@/components/Main.vue'
+import axios from "axios"
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    Header, 
+    Main,
+  },
+    
+  data() {
+    return {
+      movies: [],
+      query: '',
+    }
+  },
+
+  created() {
+    this.getMovies();
+  },
+
+  methods: {
+    getMovies() {
+      axios
+        .get("https://api.themoviedb.org/3/search/movie/?api_key=97334a30f0eef5e4d8fc3009e75f736b&query=pallone")
+        .then((result) => {
+          console.log(result.data.results);
+          this.movies = result.data.results;
+        })
+    },
+
+    getQuery(text) {
+      this.query = text;
+    },
+  },
+    
+  
 }
 </script>
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+ 
 }
 </style>
