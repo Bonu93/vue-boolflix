@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header @search="getQuery" />
-    <Main />
+    <Header @search="getResearch" />
+    <Main :moviesList="movies"/>
   </div>
 </template>
 
@@ -25,21 +25,21 @@ export default {
   },
 
   created() {
-    this.getMovies();
+
   },
 
   methods: {
     getMovies() {
       axios
-        .get("https://api.themoviedb.org/3/search/movie/?api_key=97334a30f0eef5e4d8fc3009e75f736b&query=pallone")
+        .get(`https://api.themoviedb.org/3/search/movie/?api_key=97334a30f0eef5e4d8fc3009e75f736b&query=${this.query}`)
         .then((result) => {
-          console.log(result.data.results);
           this.movies = result.data.results;
         })
     },
 
-    getQuery(text) {
+    getResearch(text) {
       this.query = text;
+      this.getMovies();
     },
   },
     
@@ -48,7 +48,5 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
- 
-}
+
 </style>
