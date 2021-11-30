@@ -3,8 +3,8 @@
         <li v-if="imageOk">
             <img :src="`https://image.tmdb.org/t/p/w185/${image}`" :alt="title">
         </li>
-        <li v-else>
-            Poster not found
+        <li v-else class="imgnotOk">
+            Image not found
         </li>
         <li>Titolo: {{ title }}</li>
         <li v-show="titleOk">Titolo originale: {{ orTitle }}</li>
@@ -61,5 +61,14 @@ export default {
         img {
             width: 30px;
         }
+    }
+
+    .imgnotOk {
+        background-color: coral;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 185px;
+        height: 300px;
     }
 </style>
