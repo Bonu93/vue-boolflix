@@ -1,7 +1,7 @@
 <template>
   <header>
       <input type="text"
-      v-model="userQuery"
+      v-model.trim="userQuery"
       @keyup.enter="$emit('search', userQuery)"
       >
 

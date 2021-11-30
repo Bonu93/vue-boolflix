@@ -1,8 +1,15 @@
 <template>
     <ul>
+        <li v-if="imageOk">
+            <img :src="`https://image.tmdb.org/t/p/w185/${image}`" :alt="title">
+        </li>
+        <li v-else>
+            Poster not found
+        </li>
         <li>Titolo: {{ title }}</li>
         <li v-show="titleOk">Titolo originale: {{ orTitle }}</li>
         <li class="lang-img" v-if="flagOk">
+            Lingua:
             <img :src="require(`@/assets/${language}.png`)" alt="">
         </li>
         <li v-else>Lingua: {{ language }}</li>
@@ -18,6 +25,7 @@ export default {
         orTitle: String,
         language: String, 
         vote: Number,
+        image: String,
     },
 
     data(){
@@ -37,6 +45,11 @@ export default {
 
         titleOk() {
             return this.title !== this.orTitle ?
+                true : false;
+        },
+
+        imageOk()  {
+            return this.image !== null ?
                 true : false;
         }
     },
