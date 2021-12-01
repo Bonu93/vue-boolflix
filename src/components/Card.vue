@@ -13,7 +13,19 @@
             <img :src="require(`@/assets/${language}.png`)" alt="">
         </li>
         <li v-else>Lingua: {{ language }}</li>
-        <li>Voto: {{ vote }}</li>
+        <li>
+            <i class="fas fa-star"
+            v-for="n in voteConverted"
+            :key="`fullstar-${n}`"
+            >
+            </i>
+            <i class="far fa-star"
+            v-for="n in (5 - voteConverted)"
+            :key="`fullstar-${n}`"
+            >
+            </i>
+
+        </li>
     </ul>
 </template>
 
@@ -51,6 +63,10 @@ export default {
         imageOk()  {
             return this.image !== null ?
                 true : false;
+        },
+
+        voteConverted() {
+            return Math.ceil(this.vote /2)
         }
     },
 }

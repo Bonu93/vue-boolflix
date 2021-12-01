@@ -1,22 +1,25 @@
 <template>
   <div id="app">
     <Header @search="getResearch" />
-    <Main :moviesList="movies"
-          :seriesList="series"
-    />
+    <main>
+      <Gallery :list="movies"/>
+
+      <Gallery :list="series"/>
+
+    </main>
   </div>
 </template>
 
 <script>
 import Header from '@/components/Header.vue'
-import Main from '@/components/Main.vue'
+import Gallery from '@/components/Gallery.vue'
 import axios from "axios"
 
 export default {
   name: 'App',
   components: {
     Header, 
-    Main,
+    Gallery,
   },
     
   data() {
@@ -34,7 +37,13 @@ export default {
   methods: {
     getMovies() {
       axios
-        .get(`https://api.themoviedb.org/3/search/movie/?api_key=97334a30f0eef5e4d8fc3009e75f736b&language=it-IT&query=${this.query}`)
+        .get('https://api.themoviedb.org/3/search/movie' , {
+            params: {
+                api_key: '97334a30f0eef5e4d8fc3009e75f736b',
+                language: 'it',
+                query: this.query,
+              }
+        })
         .then((result) => {
           this.movies = result.data.results;
         })
@@ -42,7 +51,13 @@ export default {
 
     getSeries() {
       axios
-        .get(`https://api.themoviedb.org/3/search/tv?api_key=97334a30f0eef5e4d8fc3009e75f736b&language=it-IT&query=${this.query}`)
+        .get('https://api.themoviedb.org/3/search/tv' , {
+            params: {
+              api_key: '97334a30f0eef5e4d8fc3009e75f736b',
+              language: 'it',
+              query: this.query,
+            }
+        })
         .then((result) => {
           this.series = result.data.results;
         })
