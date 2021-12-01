@@ -99,9 +99,11 @@ export default {
         flex-direction: column;
         height: 100%;
         position: relative;
+        cursor: pointer;
+        
         &:hover {
             .info  {
-                display: block;
+                opacity: 1;
             }
         }
             img {
@@ -118,12 +120,13 @@ export default {
                 height: 100%;
                 white-space: normal;
                 overflow: hidden;
-                display: none;
+                opacity: 0;
+                transition: opacity .3s linear;
                 
                
                 h2,
                 h3 {
-                    font-size: 1rem;
+                    font-size: 1.5rem;
                 }
                 p {
                     font-size: 1rem;
