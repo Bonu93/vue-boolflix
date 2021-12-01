@@ -21,7 +21,7 @@
             </i>
             <i class="far fa-star"
             v-for="n in (5 - voteConverted)"
-            :key="`fullstar-${n}`"
+            :key="`emptystar-${n}`"
             >
             </i>
 

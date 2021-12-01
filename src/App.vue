@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" class="h-100 bg-dark d-flex flex-column">
     <Header @search="getResearch" />
-    <main>
+    <main class="overflow-auto flex-grow-1 text-light">
       <Gallery :list="movies"/>
 
       <Gallery :list="series"/>
@@ -78,5 +78,6 @@ export default {
 </script>
 
 <style lang="scss">
+  @import '@/styles/globals.scss'
 
 </style>
