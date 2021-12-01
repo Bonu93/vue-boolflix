@@ -1,7 +1,7 @@
 <template>
-  <div id="app" class="h-100 bg-dark d-flex flex-column">
+  <div id="app" class="h-100 bg-prim d-flex flex-column">
     <Header @search="getResearch" />
-    <main class="overflow-auto flex-grow-1 text-light">
+    <main class="overflow-auto flex-grow-1 text-light p-4">
       <Gallery :list="movies"/>
 
       <Gallery :list="series"/>

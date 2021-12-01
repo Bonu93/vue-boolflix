@@ -1,19 +1,38 @@
 <template>
-    <ul>
-        <li v-if="imageOk">
-            <img :src="`https://image.tmdb.org/t/p/w185/${image}`" :alt="title">
-        </li>
-        <li v-else class="imgnotOk">
-            Image not found
-        </li>
+    <div class="boolflix-card">
+        
+        <img v-if="imageOk" :src="`https://image.tmdb.org/t/p/w342/${image}`" :alt="title">
+        
+        <img v-else src="@/assets/not-found.jpg" alt="">
+
+
+
+        <div class="info p-4">
+            <h2>
+                Titolo: {{ title }}
+            </h2>
+            <h2 v-show="titleOk">
+                Titolo originale: {{ orTitle }}
+            </h2>
+            <h3>
+                Voto:
+                <i class="fas fa-star"
+                v-for="n in voteConverted"
+                :key="`fullstar-${n}`"
+                >
+                </i>
+                <i class="far fa-star"
+                v-for="n in (5 - voteConverted)"
+                :key="`emptystar-${n}`"
+                >
+                </i>
+            </h3>
+            <p>{{overview}}</p>
+        </div>
+<!-- 
         <li>Titolo: {{ title }}</li>
         <li v-show="titleOk">Titolo originale: {{ orTitle }}</li>
-        <li class="lang-img" v-if="flagOk">
-            Lingua:
-            <img :src="require(`@/assets/${language}.png`)" alt="">
-        </li>
-        <li v-else>Lingua: {{ language }}</li>
-        <li>
+        <li>Voto:
             <i class="fas fa-star"
             v-for="n in voteConverted"
             :key="`fullstar-${n}`"
@@ -25,8 +44,8 @@
             >
             </i>
 
-        </li>
-    </ul>
+        </li> -->
+    </div>
 </template>
 
 <script>
@@ -38,6 +57,7 @@ export default {
         language: String, 
         vote: Number,
         image: String,
+        overview: String,
     },
 
     data(){
@@ -73,10 +93,47 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .lang-img {
-        img {
-            width: 30px;
+
+    .boolflix-card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        position: relative;
+        &:hover {
+            .info  {
+                display: block;
+            }
         }
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            .info {
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: rgba(0, 0, 0, .7);
+                width: 100%;
+                height: 100%;
+                white-space: normal;
+                overflow: hidden;
+                display: none;
+                
+               
+                h2,
+                h3 {
+                    font-size: 1rem;
+                }
+                p {
+                    font-size: 1rem;
+                    line-height: 1rem;
+                }
+                i {
+                    color: yellow;
+                }
+
+            }
     }
 
     .imgnotOk {

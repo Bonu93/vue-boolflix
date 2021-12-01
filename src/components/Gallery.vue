@@ -1,25 +1,27 @@
 <template>
-    <div class="gallery">
 
-        <section class="items-section"
-        v-show="listOk"
-        >
-            <div class="item"
-            v-for="(item, i) in list" 
-            :key="`item-${i}`"
-            >
-                <Card 
-                :title="item.title ? item.title : item.name"
-                :orTitle="item.original_title ? item.original_title : item.original_name"
-                :language="item.original_language"
-                :vote="item.vote_average"
-                :image="item.poster_path"
-                />
-            </div>
-        </section>
+    <div class="gallery container" v-show="listOk"> 
+        <div class="row g-0">
+                <div class="item col-12 col-sm-6 col-md-3 p-1"
+                v-for="(item, i) in list" 
+                :key="`item-${i}`"
+                >
+                    <Card 
+                    :title="item.title ? item.title : item.name"
+                    :orTitle="item.original_title ? item.original_title : item.original_name"
+                    :language="item.original_language"
+                    :vote="item.vote_average"
+                    :image="item.poster_path"
+                    :overview="item.overview"
+                    />
+                </div>
+            
+        </div>
+        
 
         
     </div>
+
 </template>
 
 <script>
@@ -42,5 +44,10 @@ export default {
     }
 };
 </script>
+    
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+    .item {
+        height: 500px;
+    }
+</style>
