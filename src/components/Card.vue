@@ -123,6 +123,8 @@ export default {
                 opacity: 0;
                 transition: opacity .3s linear;
                 
+                
+                
                
                 h2,
                 h3 {
@@ -131,6 +133,13 @@ export default {
                 p {
                     font-size: 1rem;
                     line-height: 1rem;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    text-align: justify;
+                    // text-justify: inter-word;
+                    -webkit-line-clamp: 15;
+                    -webkit-box-orient: vertical;
                 }
                 i {
                     color: yellow;
